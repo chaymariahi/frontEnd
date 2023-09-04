@@ -1,0 +1,64 @@
+<div class="user-form">
+       <h2>Add User</h2>
+       <form (ngSubmit)="saveUser()" class="form-grid">
+         <div class="form-group">
+           <label for="firstName">First Name</label>
+           <input type="text" name="firstName" [(ngModel)]="user.firstName" placeholder="Enter first name" required>
+           <span class="error-message" *ngIf="!user.firstName && submitted">First name is required</span>
+         </div>
+     
+         <div class="form-group">
+           <label for="lastName">Last Name</label>
+           <input type="text" name="lastName" [(ngModel)]="user.lastName" placeholder="Enter last name" required>
+           <span class="error-message" *ngIf="!user.lastName && submitted">last name is required</span>
+         </div>
+     
+         <div class="form-group">
+           <label for="occupation">Occupation</label>
+           <input type="text" name="occupation" [(ngModel)]="user.occupation" placeholder="Enter occupation" required>
+           <span class="error-message" *ngIf="!user.occupation && submitted">occupation is required</span>
+         </div>
+     
+         <div class="form-group">
+           <label for="email">Email</label>
+           <input type="email" name="email" [(ngModel)]="user.email" placeholder="Ex. test@gmail.com" required>
+           <span class="error-message" *ngIf="!user.email && submitted">email is required</span>
+         </div>
+     
+         <div class="form-group">
+           <label for="phoneNumber">Phone Number</label>
+           <input type="tel" name="phoneNumber" [(ngModel)]="user.phoneNumber" placeholder="_ _ _ _ _ _ _ _" mask="000-000-0000" required>
+           <span class="error-message" *ngIf="!user.phoneNumber && submitted">phoneNumber is required</span>
+           <mat-error *ngIf="phoneNumberInvalid">Phone number must be 8 digits long</mat-error>
+         </div>
+     
+         <div class="form-group">
+           <label for="age">Age</label>
+           <input type="text" name="age" [(ngModel)]="user.age" placeholder="Enter age" mask="00" required>
+           
+         </div>
+         
+     
+          <div class="form-group">
+            <label>Gender</label>
+            <mat-radio-group aria-label="Select an option" name="gender" [(ngModel)]="user.gender">
+              <mat-radio-button value="man">Man</mat-radio-button>
+              <mat-radio-button value="woman">Woman</mat-radio-button>
+            </mat-radio-group>
+          </div>
+     
+         <div class="form-buttons">
+           <button type="submit" class="btn btn-primary ok-button">Ok</button>
+           <button type="button" class="btn btn-secondary  cancel-button" (click)="cancel()">Cancel</button>
+           <button *ngIf="user.id" (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+         </div>
+       </form>
+     </div>
+
+     
+
+     
+     
+     
+     
+   

@@ -1,0 +1,76 @@
+.row-instructions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.search-bar {
+  text-align: center;
+}
+
+.users-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-and-lastname {
+  margin-right: 15px;
+  cursor:grab;
+  width: 300px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.add-user-button {
+  margin-top: 15px;
+  background-color: green; 
+  border-color: greenyellow;
+}
+
+.edit-user-button {
+  margin-left: 15px;
+  background-color: blue; 
+  border-color: burlywood;
+}
+.btn-secondary{
+  background-color: green;
+  margin-left: 5px;
+}
+.no-users-message {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+}
+.user-details {
+  display: flex;
+  align-items: center;
+}
+
+.age {
+  margin-left: auto;
+  color: black;
+  font-weight: normal;
+}
+.organize-text{
+  color: white;
+}

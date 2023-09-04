@@ -1,0 +1,63 @@
+<div class="text-center mt-3">
+    <a class="btn btn-primary text-light add-user-button" routerLink="/adduser">Add user</a>
+  </div>
+  <div class="row row-instructions">
+
+    <div class="col-md-12 search-bar">
+      <input type="text"
+             [(ngModel)]="filters.keyword"
+             name="keyword"
+             (input)="ListUsers()"
+             class="form-control"
+             placeholder="Search for user by first name">
+    </div>
+  </div>
+  
+  <div class="users-container mt-3">
+    <div *ngIf="users.length === 0" class="text-center no-users-message">
+      No users found with the name '{{ filters.keyword }}'
+    </div>
+    <div class="card mb-2" *ngFor="let user of users">
+      <div class="card-body flex">
+        <div class="user-details" (click)="toggleUserDetails(user)">
+          <span class="text-capitalize font-weight-bold name-and-lastname">{{user.firstName}} {{user.lastName}}</span>
+          <span class="badge badge-pill badge-warning font-weight-bold age">Age : {{user.age}} ans</span>
+        </div>
+        <a class="btn btn-primary text-light edit-user-button" routerLink="/edituser/{{user.id}}">Update</a>
+      </div>
+      <div *ngIf="user.showDetails" class="user-info">
+        <p><strong> Age : </strong> {{ user.age }}</p>
+        <p><strong> Email : </strong> {{ user.email }}</p>
+        <p><strong> Occupation : </strong> {{ user.occupation }}</p>
+        <p><strong> Phone number : </strong> {{ user.phoneNumber }}</p>
+        <p><strong> Gender : </strong> {{ user.gender }}</p>
+        <button class="btn btn-secondary" (click)="toggleUserDetails(user)">Hide Details</button>
+      </div>
+    </div>
+  
+    <!-- Liste déroulante pour organiser les utilisateurs -->
+    <div class="row justify-content-center mt-3">
+      <div class="col-md-12 text-center">
+        <div class="organize-header">
+          <span class="organize-arrow">&#9660;</span> 
+          <p class="organize-text">Organize users by name or age:</p>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="bi bi-caret-down-fill"></i></span>
+          </div>
+          <select name="sortBy" [(ngModel)]="filters.sortBy" (change)="ListUsers()" class="form-control">
+            <option value="Name">Name</option>
+            <option value="Age">Age</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+
+
