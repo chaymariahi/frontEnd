@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Récupérer le code source depuis le référentiel Git
+                git url: 'https://github.com/chaymariahi/frontEnd.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Installer les dépendances Angular
+                bat 'npm install'
+
+                // Build de l'application Angular pour la production
+                bat 'ng build --prod'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Exécution des tests unitaires Angular (optionnel)
+                bat 'ng test'
+
+                // Exécution des tests d'intégration Angular (optionnel)
+                bat 'ng e2e'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Déploiement des fichiers de production vers le serveur (exemple avec SSH)
+                bat 'xcopy /s /y dist\\* C:\\Apache24\\htdocs\\monapp'
+            }
+        }
+    }
+
+    post {
+        failure {
+            // Actions en cas d'échec du pipeline
+            echo 'Le pipeline a échoué. Veuillez vérifier les logs et les erreurs.'
+        }
+
+        success {
+            // Actions en cas de succès du pipeline
+            echo 'Le pipeline a réussi !'
+        }
+    }
+}
