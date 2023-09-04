@@ -18,7 +18,7 @@ pipeline {
                 bat 'npm install'
 
                 // Build de l'application Angular pour la production
-                bat 'ng build --prod'
+                bat 'npm run ng -- build'
             }
         }
 
