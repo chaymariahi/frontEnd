@@ -34,21 +34,11 @@ pipeline {
         }
 
         stage('SonarQube Scan') {
-    steps {
-        script {
-            def scannerHome = tool name: 'sonarscanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-            withSonarQubeEnv('SonarQube Server') {
-                bat """
-                ${scannerHome}/bin/sonar-scanner \
-                    -Dsonar.projectKey=frontend \
-                    -Dsonar.sources=src \
-                    -Dsonar.host.url=http://localhost:9000 \
-                    -Dsonar.login=sqp_21b134ad9e8f093a4c4a5b795edaaff0383ae1ba
-                """
+            steps{
+                bat 'npm run sonar'
             }
+             
         }
-    }
-}
 
 
         stage('Deploy') {
