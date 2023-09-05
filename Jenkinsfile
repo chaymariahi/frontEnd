@@ -6,7 +6,7 @@ pipeline {
 
     environment {
     SONARSERVER = "sonarserver"
-    SONAR = "sonar"
+    SONARSCANNER = "sonarscanner"
     }
     
     stages {
