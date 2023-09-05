@@ -35,8 +35,11 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                // Déploiement des fichiers de production vers le serveur (exemple avec SSH)
-                bat 'xcopy /s /y dist\\* C:\\Apache24\\htdocs\\monapp'
+                // Créez le répertoire de destination s'il n'existe pas
+            bat 'mkdir C:\\Apache24\\htdocs\\monapp'
+            
+            // Copiez le contenu de dist\* vers le répertoire de destination
+            bat 'xcopy /s /y dist\\* C:\\Apache24\\htdocs\\monapp'
             }
         }
     }
