@@ -3,6 +3,11 @@ pipeline {
     tools {
         nodejs "NodeJS"
     }
+
+    environment {
+    SONARSERVER = "sonarserver"
+    SONAR = "sonar"
+    }
     
     stages {
         stage('Checkout') {
@@ -34,9 +39,16 @@ pipeline {
         }
 
         stage('SonarQube Scan') {
-            steps{
-                bat 'npm run sonar'
-            }
+
+            environment {
+             scannerHome = tool "${SONARSCANNER}"
+          }
+                            steps {
+                                withSonarQubeEnv("${SONARSERVER}") {
+                                    bat 'npm run sonar'
+                                }
+                            }
+            
              
         }
 
