@@ -19,17 +19,17 @@ pipeline {
                 bat 'npm install'
 
                 // Build de l'application Angular pour la production
-                bat 'ng build'
+                bat 'run ng -- build --prod'
             }
         }
 
         stage('Test') {
             steps {
                 // Exécution des tests unitaires Angular (optionnel)
-                bat 'ng test'
+                bat 'npm run ng -- test'
 
                 // Exécution des tests d'intégration Angular (optionnel)
-                bat 'ng e2e'
+                bat 'npm run ng -- e2e'
             }
         }
 
@@ -44,12 +44,12 @@ pipeline {
     post {
         failure {
             // Actions en cas d'échec du pipeline
-            echo 'Le pipeline a échoué. Veuillez vérifier les logs et les erreurs.'
+            echo 'Le pipeline a echoue. Veuillez verifier les logs et les erreurs.'
         }
 
         success {
             // Actions en cas de succès du pipeline
-            echo 'Le pipeline a réussi !'
+            echo 'Le pipeline a reussi !'
         }
     }
 }
