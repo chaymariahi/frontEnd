@@ -25,10 +25,10 @@ pipeline {
         stage('Test') {
             steps {
                 // Exécution des tests unitaires Angular (optionnel)
-                bat 'ng test'
+                bat 'npm run ng -- test'
 
                 // Exécution des tests d'intégration Angular (optionnel)
-                bat 'ng e2e'
+                bat 'npm run ng -- e2e'
             }
         }
 
