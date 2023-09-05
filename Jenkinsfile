@@ -33,11 +33,26 @@ pipeline {
             }
         }
 
+        stage('SonarQube Scan') {
+    steps {
+        script {
+            def scannerHome = tool name: 'sonarscanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+            withSonarQubeEnv('SonarQube Server') {
+                sh """
+                ${scannerHome}/bin/sonar-scanner \
+                    -Dsonar.projectKey=frontend \
+                    -Dsonar.sources=src \
+                    -Dsonar.host.url=http://localhost:9000 \
+                    -Dsonar.login=<VOTRE_JETON_SONARQUBE>
+                """
+            }
+        }
+    }
+}
+
+
         stage('Deploy') {
             steps {
-                // Créez le répertoire de destination s'il n'existe pas
-            bat 'mkdir C:\\Apache24\\htdocs\\monapp'
-            
             // Copiez le contenu de dist\* vers le répertoire de destination
             bat 'xcopy /s /y dist\\* C:\\Apache24\\htdocs\\monapp'
             }
