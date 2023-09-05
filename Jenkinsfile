@@ -19,17 +19,17 @@ pipeline {
                 bat 'npm install'
 
                 // Build de l'application Angular pour la production
-                bat 'npm run ng -- build'
+                bat 'ng build'
             }
         }
 
         stage('Test') {
             steps {
                 // Exécution des tests unitaires Angular (optionnel)
-                bat 'npm run ng -- test'
+                bat 'ng test'
 
                 // Exécution des tests d'intégration Angular (optionnel)
-                bat 'npm run ng -- e2e'
+                bat 'ng e2e'
             }
         }
 
