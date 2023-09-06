@@ -7,6 +7,7 @@ pipeline {
     environment {
     SONARSERVER = "sonarserver"
     SONARSCANNER = "sonarscanner"
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     
     stages {
@@ -14,6 +15,22 @@ pipeline {
             steps {
                 // Récupérer le code source depuis le référentiel Git
                 git url: 'https://github.com/chaymariahi/frontEnd.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'docker build -t jenkins/jenkins-docker-hub .'
+            }
+        }
+        stage('Login') {
+            steps {
+                bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
+        stage('Push') {
+            steps {
+                bat 'docker push jenkins/jenkins-docker-hub'
             }
         }
 
@@ -28,7 +45,7 @@ pipeline {
             }
         }
 
-        stage('Test') {
+       /* stage('Test') {
             steps {
                 // Exécution des tests unitaires Angular (optionnel)
                 bat 'npm run test-headless'
@@ -36,9 +53,9 @@ pipeline {
                 // Exécution des tests d'intégration Angular (optionnel)
                 //bat 'ng e2e'
             }
-        }
+        }*/
 
-        stage('SonarQube Scan') {
+       /* stage('SonarQube Scan') {
 
             environment {
              scannerHome = tool "${SONARSCANNER}"
@@ -50,15 +67,15 @@ pipeline {
                             }
             
              
-        }
+        }*/
 
 
-        stage('Deploy') {
-            steps {
+        //stage('Deploy') {
+           // steps {
             // Copiez le contenu de dist\* vers le répertoire de destination
-            bat 'xcopy /s /y dist\\* C:\\Apache24\\htdocs\\monapp'
-            }
-        }
+           // bat 'xcopy /s /y dist\\* C:\\Apache24\\htdocs\\monapp'
+            //}
+        //}
     }
 
     post {
