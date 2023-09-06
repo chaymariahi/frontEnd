@@ -18,17 +18,17 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build docker') {
             steps {
                 bat 'docker build -t jenkins/jenkins-docker-hub .'
             }
         }
-        stage('Login') {
+        stage('Login docker') {
             steps {
                 bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
-        stage('Push') {
+        stage('Push docker') {
             steps {
                 bat 'docker push jenkins/jenkins-docker-hub'
             }
