@@ -3,6 +3,9 @@ pipeline {
     tools {
         nodejs "NodeJS"
     }
+    options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
 
     environment {
     SONARSERVER = "sonarserver"
