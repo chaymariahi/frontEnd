@@ -7,7 +7,7 @@ COPY package*.json ./
 RUN npm cache clean --force
 
 # Installez les dépendances
-
+COPY dist /usr/share/nginx/html
 
 # Copy files from local machine to virtual directory in docker image
 COPY . .
