@@ -21,19 +21,18 @@ pipeline {
             }
         }
 
-        stage('Build docker') {
+        stage('Build and Push Docker Image') {
             steps {
-                bat 'docker build -t jenkins/jenkins-docker-hub .'
-            }
-        }
-        stage('Login docker') {
-            steps {
-                bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-            }
-        }
-        stage('Push docker') {
-            steps {
-                bat 'docker push jenkins/jenkins-docker-hub'
+                // Build et tag de l'image Docker
+                script {
+                    docker.build("jenkins/jenkins-docker-hub")
+                }
+
+                // Connexion à Docker Hub et pousser l'image
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
+                    bat 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW'
+                    bat 'docker push jenkins/jenkins-docker-hub'
+                }
             }
         }
 

@@ -1,15 +1,21 @@
 FROM node:12.14-alpine AS build
 # Create a Virtual directory inside the docker image
-WORKDIR /dist/src/app
+WORKDIR /app
 
-RUN npm cache clean --force
+COPY package*.json ./
+
+# Installez les dépendances
+RUN npm install
+
 # Copy files from local machine to virtual directory in docker image
 COPY . .
 
+# Build de l'application Angular pour la production
+RUN npm run build --prod
 
-FROM nginx:latest AS ngi
+FROM nginx:latest 
 
-COPY --from=build /dist/src/app/dist/my-docker-angular-app /usr/share/nginx/html
+COPY --from=build /app/dist/my-docker-angular-app /usr/share/nginx/html
 COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
