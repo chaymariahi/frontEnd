@@ -21,17 +21,17 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build docker') {
       steps {
         bat 'docker build -t jenkins/jenkins-docker-hub .'
       }
     }
-    stage('Login') {
+    stage('Login docker') {
       steps {
         bat 'echo $dckr_pat_GoTvi9MpYmFESRhxGFTmkUAw4n8 | docker login -u $jenkins --password-stdin'
       }
     }
-    stage('Push') {
+    stage('Push docker') {
       steps {
         bat 'docker push jenkins/jenkins-docker-hub'
       }
