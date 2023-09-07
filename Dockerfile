@@ -1,23 +1,30 @@
-FROM node:12.14-alpine AS build
-# Create a Virtual directory inside the docker image
+# Étape de construction
+FROM node:16.2.3 AS build
+
+# Créez un répertoire de travail
 WORKDIR /app
 
+# Copiez les fichiers package.json et package-lock.json dans le conteneur
 COPY package*.json ./
 
-RUN npm cache clean --force
-
 # Installez les dépendances
-COPY dist /usr/share/nginx/html
+RUN npm install
 
-# Copy files from local machine to virtual directory in docker image
+# Copiez le reste de votre application
 COPY . .
 
-# Build de l'application Angular pour la production
+# Construisez votre application Angular pour la production
+RUN ng build --prod
 
+# Étape de déploiement
+FROM nginx:latest
 
-FROM nginx:latest 
+# Copiez les fichiers de build dans le répertoire de publication NGINX
+COPY --from=build /app/dist /usr/share/nginx/html
 
-COPY --from=build /app/dist/my-docker-angular-app /usr/share/nginx/html
-COPY /nginx.conf  /etc/nginx/conf.d/default.conf
+# Copiez votre fichier de configuration NGINX
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Exposez le port 80 (par défaut) pour NGINX
 EXPOSE 80
+
