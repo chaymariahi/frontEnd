@@ -7,13 +7,13 @@ COPY package*.json ./
 RUN npm cache clean --force
 
 # Installez les dépendances
-RUN npm install
+
 
 # Copy files from local machine to virtual directory in docker image
 COPY . .
 
 # Build de l'application Angular pour la production
-RUN npm run build --prod
+
 
 FROM nginx:latest 
 
