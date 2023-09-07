@@ -8,14 +8,10 @@ WORKDIR /app
 COPY package*.json ./
 
 # Installez les dépendances
-RUN npm install
-
 # Copiez le reste de votre application
 COPY . .
 
 # Construisez votre application Angular pour la production
-RUN ng build --prod
-
 # Étape de déploiement
 FROM nginx:latest
 
