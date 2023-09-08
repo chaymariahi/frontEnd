@@ -15,13 +15,11 @@ COPY . .
 
 # Construisez votre application Angular pour la production
 # Étape de déploiement
-FROM nginx:latest
-
-# Copiez les fichiers de build dans le répertoire de publication NGINX
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Copiez votre fichier de configuration NGINX
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+FROM nginx:latest AS ngi
+# Copying compiled code and nginx config to different folder
+# NOTE: This path may change according to your project's output folder 
+COPY --from=build /dist/src/app/dist/my-docker-angular-app /usr/share/nginx/html
+COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 
 # Exposez le port 80 (par défaut) pour NGINX
 EXPOSE 80
