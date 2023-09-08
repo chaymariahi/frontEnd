@@ -18,7 +18,7 @@ COPY . .
 FROM nginx:latest AS ngi
 # Copying compiled code and nginx config to different folder
 # NOTE: This path may change according to your project's output folder 
-COPY --from=build /dist/src/app/dist/my-docker-angular-app /usr/share/nginx/html
+COPY --from=build /dist/src/app/dist/appweb /usr/share/nginx/html
 COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 
 # Exposez le port 80 (par défaut) pour NGINX
