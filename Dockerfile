@@ -1,6 +1,8 @@
 # Étape de construction
 FROM node:18.17.0 AS build
 
+FROM alpine:3.13.5
+
 # Créez un répertoire de travail
 WORKDIR /dist/src/app
 
