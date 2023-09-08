@@ -35,6 +35,7 @@ pipeline {
 
     }
     }
+    }
     stage('Push docker') {
       steps {
         bat 'docker push chymouu/jenkins-docker-hub'
