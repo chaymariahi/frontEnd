@@ -2,7 +2,9 @@
 FROM node:18.17.0 AS build
 
 # Créez un répertoire de travail
-WORKDIR /app
+WORKDIR /dist/src/app
+
+RUN npm cache clean --force
 
 # Copiez les fichiers package.json et package-lock.json dans le conteneur
 COPY package*.json ./
