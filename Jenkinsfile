@@ -28,7 +28,7 @@ pipeline {
     }
     stage('Login docker') {
       steps {
-        bat 'echo $dckr_pat_GoTvi9MpYmFESRhxGFTmkUAw4n8 | docker login -u $jenkins --password-stdin'
+        bat 'echo $djejaaaa1 | docker login -u $chymouu --password-stdin'
       }
     }
     stage('Push docker') {
