@@ -10,7 +10,7 @@ pipeline {
     environment {
     SONARSERVER = "sonarserver"
     SONARSCANNER = "sonarscanner"
-    //DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     
     stages {
