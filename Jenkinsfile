@@ -26,9 +26,9 @@ pipeline {
         bat 'docker build -t jenkins/jenkins-docker-hub .'
       }
     }
-    stage('Login docker') {
+    stage('Login') {
       steps {
-        bat 'echo $djejaaaa1 | docker login -u $chymouu --password-stdin'
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage('Push docker') {
