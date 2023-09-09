@@ -1,5 +1,5 @@
 FROM alpine:3.13.5
-FROM node:18.17.0-alpine AS build
+FROM node:18.17.0 AS build
 # Étape de construction
 #FROM node:18.17.0 AS build
 
