@@ -23,7 +23,7 @@ pipeline {
 
         stage('Build docker') {
       steps {
-        bat 'docker build -t chymouu/jenkins-docker-hub .'
+        bat 'docker build -t chaymariahi/jenkins-docker-hub .'
       }
     }
     stage('Login') {
@@ -34,7 +34,7 @@ pipeline {
     }
     stage('Push docker') {
       steps {
-        bat 'docker push chymouu/jenkins-docker-hub'
+        bat 'docker push chaymariahi/jenkins-docker-hub'
       }
     }
 
