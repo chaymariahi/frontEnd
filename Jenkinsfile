@@ -34,6 +34,7 @@ pipeline {
 
       }
     }
+    }
     stage('Push docker') {
       steps {
         bat 'docker push chaymariahi/jenkins-docker-hub'
