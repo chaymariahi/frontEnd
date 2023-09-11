@@ -16,6 +16,9 @@ COPY package*.json ./
 # Copiez le reste de votre application
 COPY . .
 
+RUN npm install
+RUN npm run build --prod
+
 # Construisez votre application Angular pour la production
 # Étape de déploiement
 FROM nginx:latest AS ngi
