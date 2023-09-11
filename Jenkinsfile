@@ -74,12 +74,14 @@ pipeline {
         }*/
 
 
-        //stage('Deploy') {
-           // steps {
-            // Copiez le contenu de dist\* vers le répertoire de destination
-           // bat 'xcopy /s /y dist\\* C:\\Apache24\\htdocs\\monapp'
-            //}
-        //}
+        stage('Deploy') {
+            steps {
+            
+               bat 'docker pull chaymariahi/jenkins-docker-hub'
+        
+               bat 'docker run -d -p 8080:80 --name my-app chaymariahi/jenkins-docker-hub'
+            }
+        }
     }
 
     post {
