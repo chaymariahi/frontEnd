@@ -8,7 +8,8 @@ pipeline {
     environment {
     SONARSERVER = "sonarserver"
     SONARSCANNER = "sonarscanner"
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+     DOCKERHUB_USERNAME = credentials('chaymariahi')
+        DOCKERHUB_PASSWORD = credentials('dckr_pat_ljLzWHJEWIFmxRimjCqj306isIc')
     }
     
     stages {
@@ -26,7 +27,10 @@ pipeline {
     }
     stage('Login') {
       steps {
-        bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        script {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                        bat 'echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin'
+                    }
 
       }
     }
