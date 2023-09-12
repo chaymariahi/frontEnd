@@ -1,5 +1,5 @@
-FROM node:12.14-alpine AS build
-# Create a Virtual directory inside the docker image
+# Stage 1: Build the Angular app
+FROM node:18.17.0 AS build
 WORKDIR /dist/src/app
 # Copy files to virtual directory
 # COPY package.json package-lock.json ./
