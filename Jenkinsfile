@@ -21,7 +21,6 @@ pipeline {
 
         stage('Build docker') {
       steps {
-        bat 'docker builder prune -a'
         bat 'docker build -t chaymariahi/jenkins-docker-hub .'
       }
     }
