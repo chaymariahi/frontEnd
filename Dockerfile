@@ -1,12 +1,10 @@
 # Stage 1: Build the Angular app
 FROM node:18.17.0 AS build
 WORKDIR /app
-
-RUN npm cache clean --force
-
-
+COPY package.json package-lock.json ./
+RUN npm install
 COPY . .
-
+RUN ng build --prod
 
 # Stage 2: Use Nginx to serve the built app
 FROM nginx:latest AS ngi
