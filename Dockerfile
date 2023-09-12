@@ -4,28 +4,22 @@ FROM node:18.17.0 AS build
 
 
 
-# Créez un répertoire de travail
-#WORKDIR /dist/src/app
-WORKDIR /usr/src/app
-
+WORKDIR /dist/src/app
+# Copy files to virtual directory
+# COPY package.json package-lock.json ./
+# Run command in Virtual directory
 RUN npm cache clean --force
-
-# Copiez les fichiers package.json et package-lock.json dans le conteneur
-COPY package*.json ./
-
-# Installez les dépendances
-# Copiez le reste de votre application
+# Copy files from local machine to virtual directory in docker image
 COPY . .
 
 
-# Construisez votre application Angular pour la production
-# Étape de déploiement
+### STAGE 2:RUN ###
+# Defining nginx image to be used
 FROM nginx:latest AS ngi
 # Copying compiled code and nginx config to different folder
 # NOTE: This path may change according to your project's output folder 
-#COPY --from=build /dist/src/app/dist/appweb /usr/share/nginx/html
-COPY --from=built /usr/src/app/dist /usr/share/nginx/html
+COPY --from=build /dist/src/app/dist/my-docker-angular-app /usr/share/nginx/html
 COPY /nginx.conf  /etc/nginx/conf.d/default.conf
-
-# Exposez le port 80 (par défaut) pour NGINX
+# Exposing a port, here it means that inside the container 
+# the app will be using Port 80 while running
 EXPOSE 80
