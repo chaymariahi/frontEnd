@@ -6,7 +6,7 @@ FROM node:18.17.0 AS build
 
 # Créez un répertoire de travail
 #WORKDIR /dist/src/app
-WORKDIR /app
+WORKDIR /usr/src/app
 
 RUN npm cache clean --force
 
@@ -24,7 +24,7 @@ FROM nginx:latest AS ngi
 # Copying compiled code and nginx config to different folder
 # NOTE: This path may change according to your project's output folder 
 #COPY --from=build /dist/src/app/dist/appweb /usr/share/nginx/html
-COPY --from=build /app/dist/appweb /usr/share/nginx/html
+COPY --from=angular-built /usr/src/app/dist /usr/share/nginx/html
 COPY /nginx.conf  /etc/nginx/conf.d/default.conf
 
 # Exposez le port 80 (par défaut) pour NGINX
