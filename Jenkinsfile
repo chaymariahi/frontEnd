@@ -84,6 +84,17 @@ pipeline {
                bat 'docker run -p 8000:80 -d ng-docker-app:v1.0.0'*/
             }
         }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+       
+      
+               bat 'kubectl apply -f deployment.yaml'
+
+               bat 'kubectl apply -f service.yaml'
+    
+            }
+       }
     }
 
     post {

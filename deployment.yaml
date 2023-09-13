@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: deployment
+  template:
+    metadata:
+      labels:
+        app: frontend
+        service: deployment
+    spec:
+      containers:
+        - name: frontend
+          image: chaymariahi/jenkins-docker-hub:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
