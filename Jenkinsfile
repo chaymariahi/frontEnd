@@ -81,7 +81,7 @@ pipeline {
         
                /*bat 'docker run -d -p 8000:80 --name my-app chaymariahi/jenkins-docker-hub'
                bat 'docker pull ng-docker-app:v1.0.0'*/
-               bat 'docker run -p 8000:80 -d chaymariahi/jenkins-docker-hub'
+               bat 'docker run -p 8081:80 -d chaymariahi/jenkins-docker-hub'
             }
         }
 
