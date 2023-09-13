@@ -42,7 +42,7 @@ pipeline {
             steps {
                 
                 // Installer les dépendances Angular
-                bat 'npm install -g npm@latest'
+                bat 'npm install -g npm@10.1.0'
 
                 // Build de l'application Angular pour la production
                 bat 'npm run build --prod'
