@@ -77,6 +77,10 @@ pipeline {
         stage('Deploy') {
             steps {
             
+               /*bat 'docker pull chaymariahi/jenkins-docker-hub'
+        
+               bat 'docker run -d -p 8080:80 --name my-app chaymariahi/jenkins-docker-hub'*/
+               bat 'docker pull ng-docker-app:v1.0.0'
                bat 'docker run -p 8000:80 -d ng-docker-app:v1.0.0'
             }
         }
