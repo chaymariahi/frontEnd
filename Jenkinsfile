@@ -29,9 +29,9 @@ pipeline {
         script {
                    /* bat 'docker login -u chaymariahi --password dckr_pat_HQbfAAmrn1UHatzxCMGamN_zDOc'*/
                     
-                    withCredentials([string(credentialsId:'docker-hub', variable: 'dockerHubPwd')]){
-                        bat "docker login -u chaymariahi -p ${dockerHubPwd}"
-                    }
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                    bat "docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD"
+                }
 
       }
     }
