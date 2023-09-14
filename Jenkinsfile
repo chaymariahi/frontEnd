@@ -85,7 +85,7 @@ pipeline {
         
                /*bat 'docker run -d -p 8000:80 --name my-app chaymariahi/jenkins-docker-hub'
                bat 'docker pull ng-docker-app:v1.0.0'*/
-               bat 'docker run -d -p 8000:80  chaymariahi/jenkins-docker-hub'
+               bat 'docker run -d -p chaymariahi/jenkins-docker-hub'
             }
         }
 
@@ -95,7 +95,7 @@ pipeline {
       
                bat 'kubectl apply -f deployment.yaml'
 
-               bat 'kubectl apply -f service.yaml'
+               /*bat 'kubectl apply -f service.yaml'*/
     
             }
        }
