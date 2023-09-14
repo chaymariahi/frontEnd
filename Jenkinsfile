@@ -27,7 +27,11 @@ pipeline {
     stage('Login') {
       steps {
         script {
-                    bat 'docker login -u chaymariahi --password dckr_pat_HQbfAAmrn1UHatzxCMGamN_zDOc'
+                   /* bat 'docker login -u chaymariahi --password dckr_pat_HQbfAAmrn1UHatzxCMGamN_zDOc'*/
+                    
+                    withCredentials([string(credentialsId:'docker-hub', variable: 'dockerHubPwd')]){
+                        bat "docker login -u chaymariahi -p ${dockerHubPwd}"
+                    }
 
       }
     }
