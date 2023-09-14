@@ -89,7 +89,7 @@ pipeline {
             steps {
        
       
-               bat 'kubectl apply -f deployment.yaml'
+               bat 'kubectl apply -f deployment.yaml --context docker-desktop'
 
                bat 'kubectl apply -f service.yaml'
     
