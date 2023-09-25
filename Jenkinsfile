@@ -72,7 +72,7 @@ pipeline {
         stage('Deploy to docker') {
             steps {
                /*bat 'docker run -p 80:80 -d --name appweb chaymariahi/jenkins-docker-hub'*/
-               bat 'docker run -p 80:80 -d chaymariahi/jenkins-docker-hub'
+               bat 'docker run -p 8082:8080 -d chaymariahi/jenkins-docker-hub'
             }
         }
 
