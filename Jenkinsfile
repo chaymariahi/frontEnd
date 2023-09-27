@@ -48,11 +48,11 @@ pipeline {
             }
         }
 
-        /*stage('Test') {
+        stage('Test') {
             steps {
                 
                 bat 'npm run test-headless'
-                bat 'ng e2e'
+                //bat 'ng e2e'
             }
         }
 
@@ -66,7 +66,7 @@ pipeline {
                                     bat 'npm run sonar'
                                 }
                             }    
-        }*/
+        }
 
 
         stage('Deploy to docker') {

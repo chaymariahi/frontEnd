@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from "@angular/common/http"
 import { RouterModule, Routes } from "@angular/router";
 import { FormsModule, ReactiveFormsModule} from "@angular/forms"
-import {MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 
 
